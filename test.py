@@ -1,31 +1,49 @@
 import xlrd
 
 
+class XLS:
+    
+    def __init__(self):
+        file_name = "2017_anhui_whg.xlsx"
+        self.data = xlrd.open_workbook(file_name)
 
-def get_rowx():
-	pass
+    def get_rowx(self):
+        pass
 
-def get_colx():
-	pass
+    def get_colx(self):
+        pass
 
-def get_area():
-	pass
+    def get_area(self):
+        pass
 
-
-file_name = "2017_anhui_whg.xlsx"
-
-data = xlrd.open_workbook(file_name)
-
+    def sheet_names(self):
 # print sheet numbers
-print(data.sheet_names())
+        return self.data.sheet_names()
 
-table = data.sheets()[0] #return xlrd.sheet.Sheet() object
+    def tables(self,i):
+        table = self.data.sheets()[i] #return xlrd.sheet.Sheet() object
+        return table
 
-nrows, ncols = table.nrows, table.ncols  #获取该sheet中的有效行数
+    def rowcol_num(self,table):
+        if table == None:
+            print("table can't be None")
+            return
 
-print(nrows,ncols)
+        return (table.nrows,table.ncols)
 
-print(table.cell_value(8,0))
+
+if __name__ == '__main__':
+
+    x = XLS()
+    print(x.sheet_names())
+    t = x.tables(0)
+
+    print(x.rowcol_num(t))
+    
+
+
+
+
 
 
 # COL
