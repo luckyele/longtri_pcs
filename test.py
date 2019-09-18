@@ -7,10 +7,11 @@ class XLS:
     def __init__(self):
         file_name = "2017_anhui_whg.xlsx"
         self.data = xlrd.open_workbook(file_name)
+        self.table_num = 0
+        self.table = None
 
-    def rowx(self):
+    def rowx(self, rowx=0):
         pass
-
 
     def colx(self):
         pass
@@ -19,11 +20,13 @@ class XLS:
         pass
 
     def sheet_names(self):
+    	self.table_num = len(self.data.sheet_names())
         return self.data.sheet_names()
 
-    def tables(self,i):
-        table = self.data.sheets()[i] #return xlrd.sheet.Sheet() object
-        return table
+    def tables(self, i=0):
+    	self.table = self.data.sheets()[i]
+    	return self.table
+
 
     def rowcol_num(self,table):
         if table == None:
@@ -43,6 +46,14 @@ if __name__ == '__main__':
     print(t.cell_value(8,0))       #返回单元格中的数据
     print(t.row_values(8,0,5))
   
+
+# TABLE
+# table = data.sheets()[0]          #通过索引顺序获取
+# table = data.sheet_by_index(sheet_indx)) #通过索引顺序获取
+# table = data.sheet_by_name(sheet_name)#通过名称获取
+# 以上三个函数都会返回一个xlrd.sheet.Sheet()对象
+# names = data.sheet_names()    #返回book中所有工作表的名字
+# data.sheet_loaded(sheet_name or indx)   # 检查某个sheet是否导入完毕
     
 # ROW
 # nrows = table.nrows  #获取该sheet中的有效行数
